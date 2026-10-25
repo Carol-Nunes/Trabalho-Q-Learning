@@ -78,6 +78,34 @@ O notebook deve ser executado em um ambiente compatível com Jupyter.
 
 A execução principal realiza as comparações de parâmetros, apresenta as tabelas e os gráficos e desenha o percurso de um modelo treinado. Não é necessário fornecer movimentos manualmente.
 
+## Testes
+
+A pasta `tests` contém testes automatizados, escritos com `pytest`, que validam as funções do notebook sem modificá-lo. As funções são carregadas diretamente do arquivo `q_learning.ipynb`, e o mapa e os parâmetros são lidos da execução principal.
+
+1. Instale as bibliotecas:
+
+   ```bash
+   pip install matplotlib numpy pandas pytest
+   ```
+
+2. Execute todos os testes:
+
+   ```bash
+   python -m pytest
+   ```
+
+3. Para pular os testes que reproduzem os experimentos completos, que levam cerca de um minuto e meio, execute:
+
+   ```bash
+   python -m pytest -m "not lento"
+   ```
+
+Os testes estão organizados em três arquivos:
+
+- **test_ambiente.py:** mapa, movimentos e recompensas. Também verifica que 17 pontos em 14 movimentos é a maior pontuação possível e que o caminho mais curto, com 10 movimentos, passa por uma armadilha.
+- **test_agente.py:** características, escolha de ação com epsilon-greedy, atualização dos pesos, treinamento e avaliação.
+- **test_experimentos.py:** resumo dos resultados, gráficos e reprodução dos experimentos, comparando os resultados com a saída salva no notebook e com as tabelas deste README.
+
 
 ## Experimentos
 
